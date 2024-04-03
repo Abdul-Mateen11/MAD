@@ -1,92 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, Touchable, TouchableOpacity, View , Image , TextInput , Button , FlatList, SectionList} from 'react-native';
+import { Alert, StyleSheet, Text, Touchable, TouchableOpacity, View , Image , TextInput } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-export default function Myscreen() {
 
+export default function Loginscreen({navigation , route}) {
+
+  const {datalo} = route.params;
+  const {value} = route.params;
   const Stack = createNativeStackNavigator();
   //const [text, onChangeText] = React.useState('Username');
   const [number, onChangeNumber] = React.useState('');
   const youpressedme = () => {
   Alert.alert('I Love you Too ')    
   }
-
-  const [myflag , setmyflag] = useState(110);
-
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
   const onPress = () => {
     Alert.alert('Logged IN')    
     }
-    const goAhead = () => {
-        //navigation.navigate('Second' ,  {datalo:123});
-        navigation.navigate('Second' ,  {value:myflag});
+    const goBack = () => {
+        navigation.navigate('First')
     }
-    const flagbutton = () => {
-        
-        // myflag = myflag + 2;
-        setmyflag(myflag+2);
-        console.log(myflag);
-    }
-    // const mydummyarray = [
-    // {key:0,title:'Lahore',time:'8:00'},
-    // {key:1,title:'Comstats',time:'8:00'}
-    // ]
-    //var myflag = 100;
-    const mydummyarray = [
-        {key:0 , title:'Pakistan',
-        data:[{key:0,title:'Lahore',key:1,title:'Karachi'}]
-        },
-        ]
   return (
 
     
     <View style={styles.container}>
-       <Text>Do You Love Me?</Text>
-       <Text style={{fontSize:50}} >my flag  is = {myflag}</Text>
-      
-      <TouchableOpacity style={styles.button} onPress={goAhead}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-      <Button
-        title="Button"
-        onPress={flagbutton}
-        color="#841584"
-        
-        />
-        {/* <FlatList
-        data = {mydummyarray}
-        keyExtractor={item=>item.key}
-        renderItem={({item}) => (
-            <View style={{backgroundColor:'grey', height:40,margin:10,flex:1,flexDirection:'row'}}>
-            <View style={{backgroundColor:'green', flex:'50%'}}>
-            <Text>{item.title}</Text>
-            </View>
-            <View style={{backgroundColor:'red', flex:'50%'}}>
-            <Text>{item.time}</Text>
-            </View>
-            </View>
-        )}
-        /> */}
-        <SectionList
-        sections = {mydummyarray}
-        keyExtractor={item=>item.key}
-        renderSectionHeader={({ section : {title}}) => (
-            <Text>{title}</Text>
-        )}
-        renderItem={({item}) => (
-            <View style={{backgroundColor:'grey', height:40,margin:10,flex:1,flexDirection:'row'}}>
-            <View style={{backgroundColor:'green', flex:'50%'}}>
-            <Text>{item.title}</Text>
-            </View>
-            <View style={{backgroundColor:'red', flex:'50%'}}>
-            <Text>{item.time}</Text>
-            </View>
-            </View>
-        )}/>
-    
-
+       {/* <Text>Do You Love Me?</Text> */}
       {/*<TouchableOpacity
       onPress={youpressedme}
       style={{backgroundColor:'red'}}>
@@ -119,7 +59,7 @@ export default function Myscreen() {
         placeholder="useless placeholder"
         // keyboardType="numeric"
       /> */}
-      {/* <View style={styles.top}>
+      <View style={styles.top}>
       <Image
         style={{width:100,height:100}}
         source={{
@@ -128,6 +68,7 @@ export default function Myscreen() {
       />
       </View>
       <View style={styles.center}>
+        <Text>Data from previous is = {value}</Text>
       <TextInput
         style={styles.input}
         //onChangeText={onChangeText}
@@ -143,13 +84,13 @@ export default function Myscreen() {
       />
       </View>  
       <View style={styles.bottom}>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text>Press Here</Text>
+      <TouchableOpacity style={styles.button} onPress={goBack}>
+        <Text>Back</Text>
       </TouchableOpacity>
-    </View>*/}
+      </View>
     </View> 
     
-        );
+  );
 }
 
 const styles = StyleSheet.create({
